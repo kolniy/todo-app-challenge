@@ -9,7 +9,7 @@ router.get("/:todoId", async (req, res) => {
     })
 
     if(!todo){
-        res.status(400).json({
+        return res.status(400).json({
             error: "Todo Not Found"
         })
     }
@@ -24,7 +24,7 @@ router.get("/todos/all", async (req, res) => {
 
 router.post("/create", async (req, res) => {
     if(!req.body.name){
-        res.status(400).json({
+        return res.status(400).json({
             error: "Todo must have a name"
         })
     }
@@ -115,8 +115,20 @@ router.delete("/:todoId", async (req, res) => {
     res.json(todo)
 })
 
-router.get("/search", async (req, res) => {
+router.get("/todos/search", async (req, res) => {
+    const searchName = req.query.name
+    const searchPriority = req.query.priority
 
+    const todoSearchResult = await Todo.find()
+    const filteredTodo = todoSearchResult.filter((todo) => {
+        const isNameMatch = todo.name.includes(searchName)
+        const isPriorityMatch = todo.priority === searchPriority
+
+        return isNameMatch || isPriorityMatch
+        
+    })
+
+     res.json(filteredTodo)   
 })
 
 

@@ -2,7 +2,11 @@
   "name": "todo-app",
   "description": "Express Gateway Instance Bootstraped from Command Line",
   "scripts": {
-    "start": "env-cmd -f ./enviroment-config/.dev.env nodemon ./server.js"
+    "start": "env-cmd -f ./enviroment-config/.dev.env nodemon ./server.js",
+    "test": "env-cmd -f ./enviroment-config/.test.env jest --watch --runInBand --detectOpenHandles"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "repository": {},
   "license": "UNLICENSED",
@@ -12,6 +16,8 @@
     "env-cmd": "10.1.0",
     "express": "4.17.1",
     "express-gateway": "1.16.10",
-    "mongoose": "5.11.8"
+    "jest": "26.6.3",
+    "mongoose": "5.11.8",
+    "supertest": "6.0.1"
   }
 }

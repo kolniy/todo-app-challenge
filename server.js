@@ -1,6 +1,6 @@
 const path = require('path');
 const gateway = require('express-gateway');
-require("./todo")
+require("./todoIndex")
 
 gateway()
   .load(path.join(__dirname, 'config'))
